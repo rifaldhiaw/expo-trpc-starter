@@ -28,6 +28,9 @@ export default function TabOneScreen() {
       <Col>
         <Text>ID: {userQuery.data.id}</Text>
         <Text>Name: {userQuery.data.name}</Text>
+        <Space size="md" />
+        <Text>Server Token Id</Text>
+        <Text>{userQuery.data.firebaseUid}</Text>
       </Col>
     );
   };
@@ -46,8 +49,12 @@ export default function TabOneScreen() {
         <Text className="font-bold">User From Firebase:</Text>
         {userFirebase ? (
           <Col>
-            <Text>UID {userFirebase.uid}</Text>
-            <Text>Name {userFirebase.displayName}</Text>
+            <Text>Client Token Id</Text>
+            <Text>{userFirebase.uid}</Text>
+            <Space size="md" />
+
+            <Text>Name: </Text>
+            <Text>{userFirebase.displayName}</Text>
           </Col>
         ) : (
           <Text>Not logged in</Text>

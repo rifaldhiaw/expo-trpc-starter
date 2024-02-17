@@ -69,10 +69,15 @@ function RootLayoutNav() {
           url: `${process.env.EXPO_PUBLIC_API_URL}/trpc`,
           // You can pass any HTTP headers you wish here
           async headers() {
-            return {
-              // TODO: Add authentication headers here
-              // authorization: getAuthCookie(),
-            };
+            const user = auth.currentUser;
+            const token = user && (await user.getIdToken());
+
+            const headers: Record<string, string> = {};
+            if (token) {
+              headers["Authorization"] = `Bearer ${token}`;
+            }
+
+            return headers;
           },
         }),
       ],

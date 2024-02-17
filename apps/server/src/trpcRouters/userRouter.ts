@@ -8,10 +8,11 @@ export const userRouter = router({
         id: z.string(),
       })
     )
-    .query(({ input }) => {
+    .query(({ input, ctx }) => {
       return {
         id: input.id,
         name: "John Doe",
+        firebaseUid: ctx.user?.user_id ?? "not logged in",
       };
     }),
 });
