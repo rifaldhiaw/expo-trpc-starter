@@ -11,6 +11,7 @@ import { trpc } from "~/lib/trpcClient";
 import { auth } from "~/lib/firebase";
 import { useMainStore } from "~/stores/mainStore";
 import Toast from "react-native-toast-message";
+import superjson from "superjson";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -64,6 +65,7 @@ function RootLayoutNav() {
   const [queryClient] = useState(() => new QueryClient());
   const [trpcClient] = useState(() =>
     trpc.createClient({
+      transformer: superjson,
       links: [
         httpBatchLink({
           url: `${process.env.EXPO_PUBLIC_API_URL}/trpc`,
