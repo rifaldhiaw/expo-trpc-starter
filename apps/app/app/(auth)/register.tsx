@@ -3,12 +3,10 @@ import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "expo-router";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { ScrollView, TextInput } from "react-native";
+import { Pressable, ScrollView, Text, TextInput } from "react-native";
 import Toast from "react-native-toast-message";
-import { Button } from "~/components/ui/button";
 import { Col } from "~/components/ui/col";
 import { Space } from "~/components/ui/space";
-import { Text } from "~/components/ui/typography";
 import { auth } from "~/lib/firebase";
 
 const SignIn = () => {
@@ -88,24 +86,29 @@ const SignIn = () => {
 
           <Space size="lg" />
           <Col className="self-stretch px-8">
-            <Button disabled={signUp.isLoading} onPress={onSignInWithGoogle}>
-              <Text className="text-xl font-semibold text-white">Register</Text>
-            </Button>
+            <Pressable
+              disabled={signUp.isLoading}
+              onPress={onSignInWithGoogle}
+              className="bg-primary p-4 rounded-lg flex items-center justify-center"
+            >
+              <Text className="text-xl font-semibold text-primary-foreground">
+                Register
+              </Text>
+            </Pressable>
           </Col>
 
           {/* sign in */}
           <Space size="xl" />
           <Text className="text-lg">Already have an account?</Text>
 
-          <Button
-            variant="ghost"
+          <Pressable
             onPress={() => {
               router.push("/(auth)/login");
             }}
             className="flex flex-row "
           >
             <Text className="text-lg font-semibold text-primary">Sign In</Text>
-          </Button>
+          </Pressable>
         </Col>
         <Space size="2xl" />
       </ScrollView>

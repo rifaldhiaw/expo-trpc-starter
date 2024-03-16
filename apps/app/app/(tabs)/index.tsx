@@ -1,9 +1,8 @@
 import { useRouter } from "expo-router";
-import { Button } from "~/components/ui/button";
+import { Button, Pressable, Text } from "react-native";
 import { Col } from "~/components/ui/col";
 import { Row } from "~/components/ui/row";
 import { Space } from "~/components/ui/space";
-import { Text } from "~/components/ui/typography";
 import { auth } from "~/lib/firebase";
 import { trpc } from "~/lib/trpcClient";
 import { useMainStore } from "~/stores/mainStore";
@@ -36,7 +35,7 @@ export default function TabOneScreen() {
   };
 
   return (
-    <Col expanded className="bg-background">
+    <Col expand className="bg-background">
       <Space size="xl" />
 
       <Col crossCenter>
@@ -64,7 +63,8 @@ export default function TabOneScreen() {
       <Space size="lg" />
 
       <Row center>
-        <Button
+        <Pressable
+          className="bg-primary p-4 rounded-lg"
           onPress={() => {
             if (userFirebase) {
               auth.signOut();
@@ -73,8 +73,10 @@ export default function TabOneScreen() {
             }
           }}
         >
-          <Text>{userFirebase ? "Logout" : "Login"}</Text>
-        </Button>
+          <Text className="text-primary-foreground">
+            {userFirebase ? "Logout" : "Login"}
+          </Text>
+        </Pressable>
       </Row>
     </Col>
   );
