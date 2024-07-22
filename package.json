@@ -11,7 +11,6 @@
     "dev": "concurrently --names 'expo,hono' -c 'bgCyan.bold,bgYellow.bold' 'bun dev:app' 'bun dev:server'"
   },
   "devDependencies": {
-    "bun-types": "latest",
     "concurrently": "^8.2.2"
   },
   "peerDependencies": {
